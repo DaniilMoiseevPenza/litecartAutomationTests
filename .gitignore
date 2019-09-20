@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+/.allure
+/.idea
+/build
+/target
+/debug
+*.iml
+1.8.10.jar
+debug.log
+README.md
