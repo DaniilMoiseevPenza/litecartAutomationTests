@@ -1,4 +1,4 @@
-package ru.altarix.edc2.helpers;
+package ru.litecart.helpers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,4 +1,4 @@
-package ru.altarix.edc2.listeners;
+package ru.litecart.listeners;
 
 import com.codeborne.selenide.WebDriverRunner;
 

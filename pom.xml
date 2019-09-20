@@ -131,14 +131,9 @@
                     <properties>
                         <property>
                             <name>listener</name>
-                            <value>ru.altarix.edc2.listeners.ScreenshotListener</value>
+                            <value>ru.litecart.listeners.ScreenshotListener</value>
                         </property>
                     </properties>
-                    <!--<forkCount>5</forkCount>-->
-                    <!--<reuseForks>true</reuseForks>-->
-                    <!--<includes>-->
-                        <!--<include>**/Parallel*IT.class</include>-->
-                    <!--</includes>-->
                 </configuration>
                 <dependencies>
                     <dependency>
