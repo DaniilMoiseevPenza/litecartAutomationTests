@@ -22,6 +22,7 @@ public class TestExec {
         Configuration.startMaximized = true;
         Configuration.baseUrl = "http://litecart.stqa.ru/en/";//System.getProperty("url");
         Configuration.browser = "chrome";
+        Configuration.fastSetValue=true;
 
     }
 }

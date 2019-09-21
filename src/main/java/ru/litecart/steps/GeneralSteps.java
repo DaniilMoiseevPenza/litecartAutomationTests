@@ -1,5 +1,6 @@
 package ru.litecart.steps;
 
+import com.codeborne.selenide.SelenideElement;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -29,14 +30,12 @@ public class GeneralSteps {
         $(byText(text)).click();
     }
 
-    @When("^set text \"([^\"]*)\" in field \"([^\"]*)\"$")
-    public void setTextInField(String text, String field) throws Throwable {
-        $(By.xpath("//td[contains(text(),'"+field+"')]//input")).setValue(text);
-    }
+
+
 
     @And("^sleep$")
     public void sleep() throws Throwable {
-        Thread.sleep(2000);
+        Thread.sleep(1000);
     }
 
 }
