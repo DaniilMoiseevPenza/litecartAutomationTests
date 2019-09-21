@@ -1,20 +1,15 @@
-package ru.litecart.steps;
+package steps;
 
-import com.codeborne.selenide.SelenideElement;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.attribute;
-import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.$x;
-import static ru.litecart.pages.CartPage.cartStopScrolling;
-import static ru.litecart.utils.actionUtils.scrollTo;
+import static pages.CartPage.cartStopScrolling;
+import static utils.actionUtils.scrollTo;
 
 public class CartSteps {
 

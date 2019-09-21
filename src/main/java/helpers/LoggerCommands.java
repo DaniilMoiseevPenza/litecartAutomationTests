@@ -1,4 +1,4 @@
-package ru.litecart.helpers;
+package helpers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,5 +9,11 @@ public class LoggerCommands {
     {
         Logger logger  = LogManager.getLogger(className);
         logger.warn(text, e);
+    }
+
+    public static void logger(String className,String text)
+    {
+        Logger logger  = LogManager.getLogger(className);
+        logger.warn(text);
     }
 }

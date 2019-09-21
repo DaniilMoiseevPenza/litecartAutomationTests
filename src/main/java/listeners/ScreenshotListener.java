@@ -1,4 +1,4 @@
-package ru.litecart.listeners;
+package listeners;
 
 import com.codeborne.selenide.WebDriverRunner;
 

@@ -1,26 +1,21 @@
-package ru.litecart.steps;
+package steps;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static ru.litecart.TestExec.setTestRunSetup;
-import static ru.litecart.pages.StartPage.cartMoreZero;
-import static ru.litecart.utils.actionUtils.scrollTo;
+import static utils.actionUtils.scrollTo;
 
 public class StartPageSteps {
 
     @Given("^open start page$")
     public void openStartPage() throws Throwable  {
-        setTestRunSetup();
+       // setTestRunSetup();
         open(Configuration.baseUrl);
 
     }

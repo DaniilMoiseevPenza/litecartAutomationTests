@@ -1,8 +1,6 @@
-package ru.litecart.utils;
+package utils;
 
-import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 

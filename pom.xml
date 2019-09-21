@@ -119,7 +119,7 @@
                 <version>2.20</version>
                 <configuration>
                     <includes>
-                    <include>**/Test*.java</include>
+                    <include>**/TestExec.java</include>
                     </includes>
                     <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
@@ -139,7 +139,7 @@
                     <properties>
                         <property>
                             <name>listener</name>
-                            <value>ru.litecart.listeners.ScreenshotListener</value>
+                            <value>listeners.ScreenshotListener</value>
                         </property>
                     </properties>
                 </configuration>

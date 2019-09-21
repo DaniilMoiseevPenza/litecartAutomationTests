@@ -1,4 +1,4 @@
-package ru.litecart.pages;
+package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
