@@ -1,14 +1,23 @@
 package steps;
 
+import com.codeborne.selenide.SelenideElement;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
+import org.apache.logging.log4j.core.util.Assert;
 import org.openqa.selenium.By;
+import pages.CartPage;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.enabled;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pages.CartPage.cartStopScrolling;
+import static pages.CartPage.productsOrder;
+import static steps.ProductInformationSteps.getProducts;
 import static utils.actionUtils.scrollTo;
 
 public class CartSteps {
@@ -25,14 +34,38 @@ public class CartSteps {
         $(By.xpath("//td[contains(text(),'"+field+"')]//input")).setValue(text);
     }
 
-
-    @And("^check that we buy <(\\d+)> \"([^\"]*)\"$")
-    public void checkThatWeBuy(int count, String productName) throws Throwable {
-            $$(By.xpath("//*[contains(text(),'Product')]/../..//*[contains(text(),'"+productName+"')]")).shouldHave(size(count));
-    }
-
     @And("^scroll to element with text \"([^\"]*)\"$")
     public void scrollToElementWithText(String text) throws Throwable {
         scrollTo($(By.xpath("//button[contains(text(),'"+text+"')]")));
+    }
+
+    @And("^check information in order$")
+    public void checkInformationInOrder() throws Throwable {
+        String[] productOrder;
+        Double commonPrice=0.0;
+        for(int i=0;i<productsOrder.size();i++) {
+            productOrder = productsOrder.get(i).getText().split(" ");
+            assertTrue( getProducts().get(i).getProductName().equals(productOrder[1]+" "+productOrder[2]),
+                    "Имена не совпадают:");
+            assertTrue(getProducts().get(i).getQuantityToBuy()== Integer.parseInt(productOrder[0]),
+                    "Не совпадает количетсво покупаемых товаров");
+            if(getProducts().get(i).getSize().equals("none"))
+            assertTrue( getProducts().get(i).getCode().equals(productOrder[3]),
+                    "Код не совпадает");
+            else
+                assertTrue(productOrder[3].
+                                equals(getProducts().get(i).getCode() + "-" + getProducts().get(i).getSize().charAt(0)),
+                        "Код или размер не совпадает");
+            assertTrue( getProducts().get(i).getPrice()==
+                            Double.parseDouble(productOrder[4].substring((productOrder[4].lastIndexOf("$") + 1))),
+                    "Стоимость не совпадают");
+            commonPrice+=Double.parseDouble(productOrder[6].substring((productOrder[6].lastIndexOf("$") + 1)));
+            assertTrue( getProducts().get(i).getPrice()*getProducts().get(i).getQuantityToBuy()==
+                            Double.parseDouble(productOrder[6].substring((productOrder[6].lastIndexOf("$") + 1))),
+                    "Общая стоимость позиции не совпадают");
+        }
+        assertTrue( commonPrice==
+                        Double.parseDouble(CartPage.commonPrice.getText().substring(CartPage.commonPrice.getText().lastIndexOf("$") + 1)),
+                "Общая стоимость не совпадают");
     }
 }
