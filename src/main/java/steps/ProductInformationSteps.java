@@ -1,23 +1,18 @@
 package steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.When;
+import cucumber.api.java.en.Then;
 import entities.Product;
-import org.openqa.selenium.By;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Objects;
+import java.util.Comparator;
 
-import static com.codeborne.selenide.Condition.disabled;
-import static com.codeborne.selenide.Selenide.$;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pages.ProductInformationPage.*;
 
 public class ProductInformationSteps {
 
     private static ArrayList<Product> products = new ArrayList<>();
-    private Boolean isInCart = false;
 
     @And("^save information about product$")
     public void saveInformationAboutProduct() throws Throwable {
@@ -37,6 +32,7 @@ public class ProductInformationSteps {
                 products.add(product);
             }
         }
+        products.sort(Comparator.comparing(Product::getPrice).reversed());
 
     }
 
@@ -52,5 +48,15 @@ public class ProductInformationSteps {
 
     public static ArrayList<Product> getProducts() {
         return products;
+    }
+
+    @Then("^check that common count of product degrees$")
+    public void checkThatCommonCountOfProductDegrees() throws Throwable {
+        ArrayList g = getProducts();
+        int r = getProducts().get(0).getQuantity() - 1;
+        int h = Integer.parseInt(productQuantity.getText().substring(0, productQuantity.getText().indexOf(" ")));
+        assertTrue(getProducts().get(0).getQuantity() - 1 ==
+                        Integer.parseInt(productQuantity.getText().substring(0, productQuantity.getText().indexOf(" "))),
+                "Общее количество продукта не уменьшается");
     }
 }

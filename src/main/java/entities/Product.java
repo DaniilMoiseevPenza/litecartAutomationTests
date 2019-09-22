@@ -9,7 +9,7 @@ public class Product {
     private final String productName;
     private Double price;
     private String size;
-    private String quantity;
+    private int quantity;
     private String code;
     private int quantityToBuy;
 
@@ -46,12 +46,14 @@ public class Product {
         this.size = size;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
     public void setQuantity(String quantity) {
-        this.quantity = quantity;
+        if(!quantity.equals("Temporary sold out"))
+        this.quantity = Integer.parseInt(quantity.substring(0,quantity.indexOf(" ")));
+        else this.quantity=0;
     }
 
     public String getCode() {

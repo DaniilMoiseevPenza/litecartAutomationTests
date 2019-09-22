@@ -9,13 +9,14 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static pages.StartPage.countCart;
+import static steps.GeneralSteps.clickTextWithName;
 import static utils.actionUtils.scrollTo;
 
 public class StartPageSteps {
 
     @Given("^open start page$")
     public void openStartPage() throws Throwable  {
-       // setTestRunSetup();
         open(Configuration.baseUrl);
 
     }
@@ -28,6 +29,6 @@ public class StartPageSteps {
 
     @Then("^check that count in cart \"([^\"]*)\"$")
     public void checkThatCountInCart(String count) throws Throwable {
-        $(By.xpath("//span[@class='quantity']")).shouldHave(text(count));
+        countCart.shouldHave(text(count));
     }
 }

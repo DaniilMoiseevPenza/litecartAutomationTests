@@ -3,7 +3,7 @@ Feature: Покупка уточек
   Background:
     Given open start page
     And check that text "Most Popular" is visible
-
+    And clear cart if it not null
 
   Scenario: Покупка уточки без скидки
     When click on duck with name "Green Duck"
@@ -94,12 +94,12 @@ Feature: Покупка уточек
     When click on duck with name "Yellow Duck"
     Then check that text "Information" is visible
     And click text with name "-- Select --"
-    And click text with name "Small"
+    And click text with name "Medium +$2.50"
     And save information about product
     When click button with name "Add To Cart"
     Then check that count in cart "2"
-    And click text with name "Small"
     And click text with name "Medium +$2.50"
+    And click text with name "Small"
     And save information about product
     When click button with name "Add To Cart"
     Then check that count in cart "3"
@@ -127,3 +127,10 @@ Feature: Покупка уточек
     And click text with name "-- Select --"
     And click text with name "Small"
     And check button with name "Add To Cart" is disable
+
+  Scenario: Проверка уменьшения общего числа уточек после добавления в корзину
+    When click on duck with name "Green Duck"
+    Then check that text "Information" is visible
+    And save information about product
+    When click button with name "Add To Cart"
+    Then check that common count of product degrees

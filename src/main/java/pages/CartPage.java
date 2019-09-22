@@ -14,5 +14,8 @@ public class CartPage {
     public static final ElementsCollection productsOrder = $$(By.xpath("//*[@class='quantity']/../..//td[@class='item']/.."));
     //Общая стоимость
     public static final SelenideElement commonPrice = $(By.xpath("//*[@class='footer']//strong[not(contains(text(),'Payment Due:'))]"));
+    //Кнопка Удалить
+    public static final SelenideElement deleteButton = $(By.xpath("//button[contains(text(),'Remove')]"));
+
 
 }

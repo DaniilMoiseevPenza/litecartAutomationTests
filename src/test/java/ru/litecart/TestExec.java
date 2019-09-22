@@ -25,7 +25,6 @@ public class TestExec {
         Configuration.baseUrl = "http://litecart.stqa.ru/en/";//System.getProperty("url");
         Configuration.browser = "chrome";
         Configuration.fastSetValue=true;
-
     }
 }
 

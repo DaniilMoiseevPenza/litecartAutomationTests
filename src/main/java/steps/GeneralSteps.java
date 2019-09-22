@@ -25,7 +25,7 @@ public class GeneralSteps {
     }
 
     @And("^click text with name \"([^\"]*)\"$")
-    public void clickTextWithName(String text) throws Throwable {
+    public static void clickTextWithName(String text) throws Throwable {
         $(byText(text)).click();
     }
 

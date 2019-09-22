@@ -8,6 +8,8 @@ import org.apache.logging.log4j.core.util.Assert;
 import org.openqa.selenium.By;
 import pages.CartPage;
 
+import java.util.ArrayList;
+
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.enabled;
@@ -16,7 +18,11 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pages.CartPage.cartStopScrolling;
+import static pages.CartPage.deleteButton;
 import static pages.CartPage.productsOrder;
+import static pages.StartPage.countCart;
+import static pages.StartPage.homeButton;
+import static steps.GeneralSteps.clickTextWithName;
 import static steps.ProductInformationSteps.getProducts;
 import static utils.actionUtils.scrollTo;
 
@@ -30,6 +36,7 @@ public class CartSteps {
 
     @When("^set text \"([^\"]*)\" in field \"([^\"]*)\"$")
     public void setTextInField(String text, String field) throws Throwable {
+        $(By.xpath("//td[contains(text(),'"+field+"')]//input")).click();
         $(By.xpath("//td[contains(text(),'"+field+"')]//input")).clear();
         $(By.xpath("//td[contains(text(),'"+field+"')]//input")).setValue(text);
     }
@@ -43,19 +50,23 @@ public class CartSteps {
     public void checkInformationInOrder() throws Throwable {
         String[] productOrder;
         Double commonPrice=0.0;
+        ArrayList g = getProducts();
         for(int i=0;i<productsOrder.size();i++) {
             productOrder = productsOrder.get(i).getText().split(" ");
             assertTrue( getProducts().get(i).getProductName().equals(productOrder[1]+" "+productOrder[2]),
-                    "Имена не совпадают:");
+                    "Имена не совпадают");
             assertTrue(getProducts().get(i).getQuantityToBuy()== Integer.parseInt(productOrder[0]),
-                    "Не совпадает количетсво покупаемых товаров");
+                    "Не совпадает количетсво покупаемых товаров:"+getProducts().get(i).getQuantityToBuy()+" "+Integer.parseInt(productOrder[0]));
             if(getProducts().get(i).getSize().equals("none"))
             assertTrue( getProducts().get(i).getCode().equals(productOrder[3]),
                     "Код не совпадает");
-            else
+            else {
+                String h = productOrder[3];
+                String j = getProducts().get(i).getCode() + "-" + getProducts().get(i).getSize().charAt(0);
                 assertTrue(productOrder[3].
                                 equals(getProducts().get(i).getCode() + "-" + getProducts().get(i).getSize().charAt(0)),
-                        "Код или размер не совпадает");
+                        "Код или размер не совпадает:" + productOrder[3] + " " + getProducts().get(i).getCode() + "-" + getProducts().get(i).getSize().charAt(0));
+            }
             assertTrue( getProducts().get(i).getPrice()==
                             Double.parseDouble(productOrder[4].substring((productOrder[4].lastIndexOf("$") + 1))),
                     "Стоимость не совпадают");
@@ -67,5 +78,20 @@ public class CartSteps {
         assertTrue( commonPrice==
                         Double.parseDouble(CartPage.commonPrice.getText().substring(CartPage.commonPrice.getText().lastIndexOf("$") + 1)),
                 "Общая стоимость не совпадают");
+        getProducts().clear();
+    }
+
+    @And("^clear cart if it not null$")
+    public void clearCartIfItNotNull() throws Throwable {
+        if(!countCart.getText().equals("0"))
+        {
+            clickTextWithName("Checkout »");
+            while(deleteButton.isDisplayed())
+            {
+                deleteButton.click();
+            }
+            clickTextWithName("<< Back");
+        }
+
     }
 }
