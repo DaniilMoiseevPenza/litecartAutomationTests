@@ -19,7 +19,7 @@ import static pages.StartPage.countCart;
 import static steps.GeneralSteps.clickTextWithName;
 import static steps.ProductInformationSteps.getProducts;
 import static utils.StringUtils.getStringAfterChar;
-import static utils.actionUtils.scrollTo;
+import static utils.ActionUtils.scrollTo;
 
 public class CartSteps {
 

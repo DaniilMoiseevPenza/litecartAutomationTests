@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pages.ProductInformationPage.*;
-import static utils.StringUtils.getStringAfterChar;
+import static utils.StringUtils.getStringBeforeChar;
 
 public class ProductInformationSteps {
 
@@ -44,14 +44,14 @@ public class ProductInformationSteps {
         return false;
     }
 
-    private static ArrayList<Product> getProducts() {
+    public static ArrayList<Product> getProducts() {
         return products;
     }
 
     @Then("^check that common count of product degrees$")
     public void checkThatCommonCountOfProductDegrees() throws Throwable {
         assertTrue(getProducts().get(0).getQuantity() - 1 ==
-                        Integer.parseInt(getStringAfterChar(productQuantity.getText(),' ')),
+                        Integer.parseInt(getStringBeforeChar(productQuantity.getText(),' ')),
                 "Общее количество продукта не уменьшается");
     }
 }

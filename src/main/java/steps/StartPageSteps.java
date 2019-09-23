@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static pages.StartPage.countCart;
-import static utils.actionUtils.scrollTo;
+import static utils.ActionUtils.scrollTo;
 
 public class StartPageSteps {
 
