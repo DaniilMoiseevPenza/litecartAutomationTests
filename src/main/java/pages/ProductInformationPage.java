@@ -8,14 +8,14 @@ import static com.codeborne.selenide.Selenide.$;
 public class ProductInformationPage {
 
     //Цена продукта
-    public final static SelenideElement productPrice = $(By.xpath("//*[@itemprop='price']"));
+    public static final SelenideElement productPrice = $(By.xpath("//*[@itemprop='price']"));
     // Количество продукта
-    public final static SelenideElement productQuantity = $(By.xpath("//*[@class='stock-status']//span"));
+    public static final SelenideElement productQuantity = $(By.xpath("//*[@class='stock-status']//span"));
     // Размер продукта
-    public final static SelenideElement productSize = $(By.name("options[Size]"));
+    public static final SelenideElement productSize = $(By.name("options[Size]"));
     // Размер продукта
-    public final static SelenideElement productCode = $(By.xpath("//*[@itemprop='sku']"));
+    public static final SelenideElement productCode = $(By.xpath("//*[@itemprop='sku']"));
     // Название продукта
-    public final static SelenideElement productName = $(By.xpath("//*[@itemprop='name']"));
+    public static final SelenideElement productName = $(By.xpath("//*[@itemprop='name']"));
 
 }

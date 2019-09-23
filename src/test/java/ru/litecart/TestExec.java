@@ -7,15 +7,12 @@ import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
 
-
 @RunWith(Cucumber.class)
 @CucumberOptions(features = {"src/test/resources/features/buyDucks.feature"},
         glue = "steps"
-        )
+)
 
 public class TestExec {
-    private static final String CLASS_NAME = TestExec.class.getName();
-
 
     @BeforeClass
     public static void init() {
@@ -24,7 +21,7 @@ public class TestExec {
         Configuration.startMaximized = true;
         Configuration.baseUrl = "http://litecart.stqa.ru/en/";//System.getProperty("url");
         Configuration.browser = "chrome";
-        Configuration.fastSetValue=true;
+        Configuration.fastSetValue = true;
     }
 }
 

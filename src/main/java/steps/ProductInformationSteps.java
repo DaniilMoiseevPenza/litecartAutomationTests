@@ -5,10 +5,10 @@ import cucumber.api.java.en.Then;
 import entities.Product;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pages.ProductInformationPage.*;
+import static utils.StringUtils.getStringAfterChar;
 
 public class ProductInformationSteps {
 
@@ -27,12 +27,10 @@ public class ProductInformationSteps {
         if (products.isEmpty())
             products.add(product);
         else {
-            if(!isInCartAndIncreaseIfInIt(products, product))
-            {
+            if (!isInCartAndIncreaseIfInIt(products, product)) {
                 products.add(product);
             }
         }
-        products.sort(Comparator.comparing(Product::getPrice).reversed());
 
     }
 
@@ -46,17 +44,14 @@ public class ProductInformationSteps {
         return false;
     }
 
-    public static ArrayList<Product> getProducts() {
+    private static ArrayList<Product> getProducts() {
         return products;
     }
 
     @Then("^check that common count of product degrees$")
     public void checkThatCommonCountOfProductDegrees() throws Throwable {
-        ArrayList g = getProducts();
-        int r = getProducts().get(0).getQuantity() - 1;
-        int h = Integer.parseInt(productQuantity.getText().substring(0, productQuantity.getText().indexOf(" ")));
         assertTrue(getProducts().get(0).getQuantity() - 1 ==
-                        Integer.parseInt(productQuantity.getText().substring(0, productQuantity.getText().indexOf(" "))),
+                        Integer.parseInt(getStringAfterChar(productQuantity.getText(),' ')),
                 "Общее количество продукта не уменьшается");
     }
 }

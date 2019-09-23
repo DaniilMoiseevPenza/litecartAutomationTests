@@ -1,6 +1,5 @@
 package steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -16,7 +15,7 @@ public class GeneralSteps {
 
     @When("^click button with name \"([^\"]*)\"$")
     public void clickButtonWithName(String buttonName) throws Throwable {
-            $(By.xpath("//button[contains(text(),'"+buttonName+"')]")).click();
+        $(By.xpath("//button[contains(text(),'" + buttonName + "')]")).click();
     }
 
     @Then("^check that text \"([^\"]*)\" is visible$")
@@ -30,15 +29,13 @@ public class GeneralSteps {
     }
 
 
-
-
     @And("^sleep$")
     public void sleep() throws Throwable {
         Thread.sleep(1000);
     }
 
     @When("^check button with name \"([^\"]*)\" is disable$")
-    public void checkButtonWithNameIsDisable(String buttonName)   {
-        $(By.xpath("//button[contains(text(),'"+buttonName+"')]")).shouldBe(disabled);
+    public void checkButtonWithNameIsDisable(String buttonName) {
+        $(By.xpath("//button[contains(text(),'" + buttonName + "')]")).shouldBe(disabled);
     }
 }
