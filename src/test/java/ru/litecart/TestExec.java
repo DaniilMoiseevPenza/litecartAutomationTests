@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = {"src/test/resources/features/buyDucks.feature"},
+@CucumberOptions(features = {"src/test/resources/features/smoke/newFeatures/chooseColum.feature"},
         glue = "steps"
 )
 
@@ -19,9 +19,9 @@ public class TestExec {
         // browser = System.getProperty("browsertype");  // ex. -Dbrowsertype=chrome
         Configuration.timeout = 10000;
         Configuration.startMaximized = true;
-        Configuration.baseUrl = "http://litecart.stqa.ru/en/";//System.getProperty("url");
+        Configuration.baseUrl = "http://edc-test.mos.ru/";//System.getProperty("url");
         Configuration.browser = "chrome";
-        Configuration.fastSetValue = true;
+        //Configuration.fastSetValue = true;
     }
 }
 
